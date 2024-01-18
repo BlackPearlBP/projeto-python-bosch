@@ -1,6 +1,3 @@
-import random
-import Verificacao
-
 class Ferramenta():
     def __init__(self, nome, descricao, preco, marca, codigo,quantidade_minima,quantidade_atual):
         self.__nome = nome
@@ -53,16 +50,6 @@ class Ferramenta():
 
     def set_codigo(self, value):
         self.__codigo = value
-
-    def cadastrar_ferramenta():
-        nome = str(input("Digite o nome da ferramenta: "))
-        descricao = str(input("Digite o descricao da ferramenta: "))
-        marca = str(input("Digite o marca da ferramenta: "))
-        codigo = random.randint(0,1000)
-        preco = Verificacao.verificar_float("Digite o preço da ferramenta: ")
-        quantidade_minima = Verificacao.verificar_inteiro("Digite a quantidade mínima: ")
-        quantidade_atual = 0
-        return Ferramenta(nome, descricao, preco, marca, codigo,quantidade_minima, quantidade_atual)
         
 
         
