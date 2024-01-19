@@ -13,9 +13,9 @@ def cadastrar_ferramenta(tensao):
         marca = str(input("Digite o marca da ferramenta: \n=====================================\n"))
         Limpeza.limpar_tela()
         codigo = random.randint(0,1000)
-        preco = Verificacao.verificar_float("Digite o preço da ferramenta: \n=====================================\n")
+        preco = Verificacao.verificar_preco("Digite o preço da ferramenta: \n=====================================\n")
         Limpeza.limpar_tela()
-        quantidade_minima = Verificacao.verificar_inteiro("Digite a quantidade mínima: \n=====================================\n")
+        quantidade_minima = Verificacao.verificar_inteiro("Digite a quantidade mínima em estoque: \n=====================================\n")
         Limpeza.limpar_tela()
         quantidade_atual = 0
         
@@ -41,7 +41,7 @@ def edita_ferramenta(codigo_informado, lista_ferramentas):
             Limpeza.limpar_tela()
             marca = str(input("Digite o marca da ferramenta: \n=====================================\n"))
             Limpeza.limpar_tela()
-            preco = Verificacao.verificar_float("Digite o preço da ferramenta: \n=====================================\n")
+            preco = Verificacao.verificar_preco("Digite o preço da ferramenta: \n=====================================\n")
             Limpeza.limpar_tela()
             quantidade_minima = Verificacao.verificar_inteiro("Digite a quantidade mínima: \n=====================================\n")
             Limpeza.limpar_tela()
@@ -63,7 +63,8 @@ def adiciona_ferramenta(codigo_informado, lista_ferramentas):
             quantidade_final = quantidade_anterior + quantidade_nova
             Ferramenta.set_quantidade_atual(ferramenta, quantidade_final) 
  
-            return print("==========================\n|       Adicinado!       |\n==========================")
+            return print("==========================\n|       Adicionado!       |\n==========================")
+    Limpeza.limpar_tela_timer()
     return print("\033[31;1mCódigo não encontrado!\033[m")
 
 def remove_ferramenta(codigo_informado, lista_ferramentas):
@@ -77,6 +78,7 @@ def remove_ferramenta(codigo_informado, lista_ferramentas):
                 return print("==========================\n|       Removido!        |\n==========================")
             else:
                 return print("\033[31;1mNão pode remover uma quantidade maior do que tem no estoque!\033[m")
+    Limpeza.limpar_tela_timer()
     return print("\033[31;1mCódigo não encontrado!\033[m")
 
 def excluir_ferramenta(codigo_informado,lista_ferramentas):
@@ -99,7 +101,7 @@ def exibir_marca(lista_ferramentas):
             print(f"Nome: {ferramenta.get_nome()}")
             print(f"Descrição: {ferramenta.get_descricao()}")
             print(f"Marca: {ferramenta.get_marca()}")
-            print(f"Preço: R${ferramenta.get_preco()}")
+            print(f"Preço: R${str(ferramenta.get_preco()).replace(".",",")}")
             print(f"Quantidade minima: {ferramenta.get_quantidade_minima()}")
             print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
             print(f"Tensão: {ferramenta.get_tensao()}")
@@ -131,11 +133,13 @@ def exibir_tensao(lista_ferramentas):
                 print(f"Nome: {ferramenta.get_nome()}")
                 print(f"Descrição: {ferramenta.get_descricao()}")
                 print(f"Marca: {ferramenta.get_marca()}")
-                print(f"Preço: R${ferramenta.get_preco()}")
+                print(f"Preço: R${str(ferramenta.get_preco()).replace(".",",")}")
                 print(f"Quantidade minima: {ferramenta.get_quantidade_minima()}")
                 print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
                 print(f"Tensão: {ferramenta.get_tensao()}")
-                print("==================================")    
+                print("==================================")
+        elif len(lista_ferramentas) and ferramenta.get_tensao() != tensao_procurada:
+            print("\033[31;1mNão há ferramentas cadastradas com essa tensão!\033[m")    
         elif len(lista_ferramentas) == 0:
             print("\033[31;1mNão há ferramentas cadastradas com essa tensão!\033[m")
         elif ferramenta.get_tensao() != tensao_procurada:
@@ -161,7 +165,7 @@ def verifica_necessidade_compra(lista_ferramentas):
             print(f"Nome: {ferramenta.get_nome()}")
             print(f"Descrição: {ferramenta.get_descricao()}")
             print(f"Marca: {ferramenta.get_marca()}")
-            print(f"Preço: R${ferramenta.get_preco()}")
+            print(f"Preço: R${str(ferramenta.get_preco()).replace(".",",")}")
             print(f"Quantidade minima: {ferramenta.get_quantidade_minima()}")
             print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
             print(f"Tensão: {ferramenta.get_tensao()}")
@@ -172,7 +176,7 @@ def verifica_necessidade_compra(lista_ferramentas):
             print(f"Nome: {ferramenta.get_nome()}")
             print(f"Descrição: {ferramenta.get_descricao()}")
             print(f"Marca: {ferramenta.get_marca()}")
-            print(f"Preço: R${ferramenta.get_preco()}")
+            print(f"Preço: R${str(ferramenta.get_preco()).replace(".",",")}")
             print(f"Quantidade minima: {ferramenta.get_quantidade_minima()}")
             print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
             print(f"Tensão: {ferramenta.get_tensao()}")
@@ -197,7 +201,7 @@ def exibir_codigo(lista_ferramentas):
             print(f"Nome: {ferramenta.get_nome()}")
             print(f"Descrição: {ferramenta.get_descricao()}")
             print(f"Marca: {ferramenta.get_marca()}")
-            print(f"Preço: R${ferramenta.get_preco()}")
+            print(f"Preço: R${str(ferramenta.get_preco()).replace(".",",")}")
             print(f"Quantidade minima: {ferramenta.get_quantidade_minima()}")
             print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
             print(f"Tensão: {ferramenta.get_tensao()}")
@@ -220,7 +224,7 @@ def exibir_informacoes(lista_ferramentas):
         print(f"Nome: {ferramenta.get_nome()}")
         print(f"Descrição: {ferramenta.get_descricao()}")
         print(f"Marca: {ferramenta.get_marca()}")
-        print(f"Preço: R${ferramenta.get_preco()}")
+        print(f"Preço: R${str(ferramenta.get_preco()).replace(".",",")}")
         print(f"Quantidade minima: {ferramenta.get_quantidade_minima()}")
         print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
         print(f"Tensão: {ferramenta.get_tensao()}")

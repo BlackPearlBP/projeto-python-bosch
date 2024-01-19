@@ -10,7 +10,9 @@ if __name__ == "__main__":
     opcao=0
     while(opcao != 11):
         Limpeza.limpar_tela()
-        opcao = Verificacao.verificar_inteiro("======== Selecione uma Opcão ========\n[1] Cadastrar\n[2] Mostrar\n[3] Editar\n[4] Adicionar no Estoque\n[5] Remover do Estoque\n[6] Excluir\n[7] Pesquisar por Marca\n[8] Pesquisar por Tensão\n[9] Verificar Necessidade de Compra\n[10] Pesquisar por Código\n[11] Sair\n=====================================\n")
+        print("\033[94m                             _         __              __               __    \n  ___ ____ _______ ___  ____(_)__ ____/ /__  ____  ___/ /__    ___ ___ / /____  ___ ___ _____\n / _ `/ -_) __/ -_) _ \/ __/ / _ `/ _  / _ \/ __/ / _  / -_)  / -_|_-</ __/ _ \/ _ `/ // / -_)\n \_, /\__/_/  \__/_//_/\__/_/\_,_/\_,_/\___/_/    \_,_/\__/   \__/___/\__/\___/\_, /\_,_/\__/\n/___/                                                                           /_/\033[m")
+
+        opcao = Verificacao.verificar_inteiro("======== Selecione uma Opcão ========\n[1] Cadastrar Ferramenta Elétrica\n[2] Mostrar Todas as Ferramentas\n[3] Editar Ferramenta\n[4] Adicionar no Estoque\n[5] Remover do Estoque\n[6] Excluir Ferramenta\n[7] Pesquisar por Marca\n[8] Pesquisar por Tensão\n[9] Verificar Necessidade de Compra\n[10] Pesquisar por Código\n[11] Sair\n=====================================\n")
         match opcao:
             case 1:
                 #cadastrar ferramenta
