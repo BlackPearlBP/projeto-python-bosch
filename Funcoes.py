@@ -93,6 +93,7 @@ def excluir_ferramenta(codigo_informado,lista_ferramentas):
 
 def exibir_marca(lista_ferramentas):
     escolha = 0
+    encontrado=False
     marca_procurada = input("Digite a marca a ser pesquisada: ")
     for ferramenta in lista_ferramentas:
         if Ferramenta.get_marca(ferramenta) == marca_procurada:
@@ -106,6 +107,10 @@ def exibir_marca(lista_ferramentas):
             print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
             print(f"Tensão: {ferramenta.get_tensao()}")
             print("==================================")
+            encontrado=True
+    if not encontrado:
+        print("\033[31;1mNão há ferramentas cadastradas com essa marca!\033[m")
+
     while escolha != "1":
         escolha = input("Deseja retornar ao menu? [1] Sim | [2] Não\n")
         if escolha == "1":
@@ -125,10 +130,10 @@ def exibir_tensao(lista_ferramentas):
     else:
         print("\033[31;1mResposta inválida!\033[m")
         return Limpeza.limpar_tela_timer()
-                
+    encontrado = False
     for ferramenta in lista_ferramentas:
         if ferramenta.get_tensao() == tensao_procurada:
-                print("\033[92;1m=== Produtos da Tensão ",tensao_procurada,"===\033[m")
+                print("\033[92;1m=== Produtos da Tensão",tensao_procurada,"===\033[m")
                 print(f"Codigo: {ferramenta.get_codigo()}")
                 print(f"Nome: {ferramenta.get_nome()}")
                 print(f"Descrição: {ferramenta.get_descricao()}")
@@ -138,14 +143,9 @@ def exibir_tensao(lista_ferramentas):
                 print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
                 print(f"Tensão: {ferramenta.get_tensao()}")
                 print("==================================")
-        elif len(lista_ferramentas) and ferramenta.get_tensao() != tensao_procurada:
-            print("\033[31;1mNão há ferramentas cadastradas com essa tensão!\033[m")    
-        elif len(lista_ferramentas) == 0:
-            print("\033[31;1mNão há ferramentas cadastradas com essa tensão!\033[m")
-        elif ferramenta.get_tensao() != tensao_procurada:
-            continue
-        else:
-                print("\033[31;1mOpção selecionada inexistente!\033[m")
+                encontrado = True    
+    if not encontrado:
+        print("\033[31;1mNão há ferramentas cadastradas com essa tensão!\033[m")
     while escolha_menu != "1":
         escolha_menu = input("Deseja retornar ao menu? [1] Sim | [2] Não\n")
         if escolha_menu == "1":
@@ -192,6 +192,7 @@ def verifica_necessidade_compra(lista_ferramentas):
 
 
 def exibir_codigo(lista_ferramentas):
+    encontrado = False
     escolha = 0
     codigo_procurado = Verificacao.verificar_inteiro("Digite o código do produto: ")
     for ferramenta in lista_ferramentas:
@@ -206,6 +207,9 @@ def exibir_codigo(lista_ferramentas):
             print(f"Quantidade atual: {ferramenta.get_quantidade_atual()}")
             print(f"Tensão: {ferramenta.get_tensao()}")
             print("==================================")
+            encontrado = True
+    if not encontrado:
+        print("\033[31;1mNão há ferramentas cadastradas com esse código!\033[m")
     while escolha != "1":
         escolha = input("Deseja retornar ao menu? [1] Sim | [2] Não\n")
         if escolha == "1":
