@@ -51,6 +51,7 @@ if __name__ == "__main__":
             case 5:
                 #remover do estoque
                 if len(lista_ferramentas) != 0:
+                    Funcoes.exibir_informacoes(lista_ferramentas)
                     codigo=Verificacao.verificar_inteiro("Informe o código: ")
                     Limpeza.limpar_tela()
                     Funcoes.remove_ferramenta(codigo,lista_ferramentas)
